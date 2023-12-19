@@ -143,6 +143,42 @@ function getRandomCharacter(charSet) {
   return charSet[randomIndex];
 }
 
+// Function to generate password with user input
+function generatePassword() {
+  const passwordOptions = getPasswordOptions();
+
+  if (!passwordOptions) {
+    return;
+  }
+
+  const { passwordLength, charOptions } = passwordOptions;
+  let generatedPassword = "";
+
+  // Generate password using a for loop
+  for (let i = 0; i < passwordLength; i++) {
+    // Get random index for the charOptions
+    const randomIndex = Math.floor(Math.random() * charOptions.length);
+    // Add selected character to the password
+    generatedPassword += charOptions[randomIndex];
+  }
+  console.log("Generated Password:", generatedPassword);
+  return generatedPassword;
+}
+
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
+
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+}
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
 // const charOptions = [];
 // const generatedPassword = "";
 // You can store the generatedPassword as a string and concat each character OR
@@ -185,40 +221,3 @@ function getRandomCharacter(charSet) {
 
 // Function for getting a random element from an array
 //function getRandom(arr) {}
-
-// Function to generate password with user input
-function generatePassword() {
-  const passwordOptions = getPasswordOptions();
-
-  const { passwordLength, charOptions } = passwordOptions;
-  let generatedPassword = "";
-
-  // Generate password using a for loop
-  for (let i = 0; i < passwordLength; i++) {
-    // Get a random index for the charOptions
-    const randomIndex = Math.floor(Math.random() * charOptions.length);
-
-    // Add the selected character to the password
-    generatedPassword += charOptions[randomIndex];
-  }
-
-  // Display or use the generated password
-  console.log("Generated Password:", generatedPassword);
-
-  // You can return the generated password if needed
-  return generatedPassword;
-}
-
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
