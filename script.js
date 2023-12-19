@@ -1,6 +1,3 @@
-const charOptions = [];
-const generatedPassword = "";
-
 var specialCharacters = [
   "@",
   "%",
@@ -146,8 +143,6 @@ function getRandomCharacter(charSet) {
   return charSet[randomIndex];
 }
 
-getPasswordOptions();
-
 // const charOptions = [];
 // const generatedPassword = "";
 // You can store the generatedPassword as a string and concat each character OR
@@ -189,10 +184,30 @@ getPasswordOptions();
 //function getPasswordOptions() {}
 
 // Function for getting a random element from an array
-function getRandom(arr) {}
+//function getRandom(arr) {}
 
 // Function to generate password with user input
-function generatePassword() {}
+function generatePassword() {
+  const passwordOptions = getPasswordOptions();
+
+  const { passwordLength, charOptions } = passwordOptions;
+  let generatedPassword = "";
+
+  // Generate password using a for loop
+  for (let i = 0; i < passwordLength; i++) {
+    // Get a random index for the charOptions
+    const randomIndex = Math.floor(Math.random() * charOptions.length);
+
+    // Add the selected character to the password
+    generatedPassword += charOptions[randomIndex];
+  }
+
+  // Display or use the generated password
+  console.log("Generated Password:", generatedPassword);
+
+  // You can return the generated password if needed
+  return generatedPassword;
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
